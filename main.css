@@ -1,0 +1,58 @@
+.theheader {
+    font-family: "Georgia", serif;
+}
+
+body {
+    background: linear-gradient(to right, cornflowerblue, lightblue);
+}
+.header-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: linear-gradient(to right, cornflowerblue, lightblue);
+    padding: 10px;
+}
+
+.header-left, .header-right {
+    display: flex;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    align-items: center;
+    padding: 20px;
+}
+
+.theheader {
+    font-family: "Georgia", serif;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+}
+.directions {
+    text-align: right;
+    padding: 10px;
+}
+
+.askit {
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #000;
+}
+input {
+    width: 300px; /* Wider input box */
+    height: 50px; /* Taller input box */
+    font-size: 20px; /* Bigger text inside input */
+    padding: 10px;
+}
+button {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer; 
+}
