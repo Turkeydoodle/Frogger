@@ -1,46 +1,31 @@
-// Select the canvas element and get its context
 const c = document.getElementById('canvas');
 const context = c.getContext('2d');
-
-c.width = 500;  // Set canvas width
-c.height = 500; // Set canvas height
-
-// Store box objects in an array
+c.width = 500; 
+c.height = 500;
 let boxes = [];
-
-// Function to draw a box at given x and y coordinates with a specific color
 function drawbox(x, y, color) {
     context.fillStyle = color;
-    context.fillRect(x, y, 10, 10); // Draw box with size 10x10px
+    context.fillRect(x, y, 10, 10); 
 }
-
-// Function to move the box to the right by 10px
 function move(box) {
-    box.x += 10; // Move box right by 10px
-}
-
-// Create the initial boxes and store them in the 'boxes' array
+    box.x += 10; }
 for (let i = 0; i < 10; i++) {
     let box = {
-        x: 20 * i,            // Initial x position with horizontal spacing
-        y: 10,                // Initial y position
-        color: 'red',         // Color of the box
+        x: 20 * i,
+        y: 10,
+        color: 'red',
         draw: function() {
-            drawbox(this.x, this.y, this.color); // Draw box at current position
+            drawbox(this.x, this.y, this.color); 
         }
     };
-    boxes.push(box);  // Push the box object into the array
+    boxes.push(box); 
 }
-
-// Function to update the canvas (clear, move, and redraw boxes)
 function update() {
-    context.clearRect(0, 0, c.width, c.height);  // Clear the canvas
+    context.clearRect(0, 0, c.width, c.height);  
     for (let i = 0; i < boxes.length; i++) {
-        move(boxes[i]);  // Move the box to the right
-        boxes[i].draw(); // Draw the box at its new position
+        move(boxes[i]);  
+        boxes[i].draw(); 
     }
-    requestAnimationFrame(update); // Call update again to continue animation
+    requestAnimationFrame(update);
 }
-
-// Start the animation
 update();
