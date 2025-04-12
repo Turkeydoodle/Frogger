@@ -10,7 +10,7 @@ function drawbox(x, y, color) {
 function move(box) {
     box.x += 10; }
 for (let i = 0; i < 10; i++) {
-    let box = {
+    let row1box = {
         x: 20 * i,
         y: 10,
         color: 'red',
@@ -18,7 +18,16 @@ for (let i = 0; i < 10; i++) {
             drawbox(this.x, this.y, this.color); 
         }
     };
-    boxes.push(box); 
+    boxes.push(row1box); 
+    let row2box = {
+        x: 20 * i,
+        y: 30,
+        color: 'blue',
+        draw: function() {
+            drawbox(this.x, this.y, this.color); 
+        }
+    };
+    boxes.push(row2box); 
 }
 function update() {
     context.clearRect(0, 0, c.width, c.height);  
