@@ -11,6 +11,18 @@ function drawbox(x, y, color) {
 function move(box) {
     box.x += 1;
 }
+let player = {
+    x: c.width / 2 - 10,
+    y: c.height - 30,
+    width: 20,
+    height: 20,
+    color: 'blue',
+    speed: 5,
+    draw: function() {
+        context.fillStyle = this.color;
+        context.fillRect(this.x, this.y, this.width, this.height);
+    }
+};
 function createlog(){
     const minInclusive = 1;
     const maxInclusive = 5;
@@ -25,18 +37,6 @@ function createlog(){
     };
     boxes.push(row1box);
 }
-let player = {
-    x: c.width / 2 - 10,
-    y: c.height - 30,
-    width: 20,
-    height: 20,
-    color: 'blue',
-    speed: 5,
-    draw: function() {
-        context.fillStyle = this.color;
-        context.fillRect(this.x, this.y, this.width, this.height);
-    }
-};
 let keys = {};
 document.addEventListener('keydown', function(e) {
     keys[e.key] = true;
