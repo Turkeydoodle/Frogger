@@ -45,8 +45,14 @@ document.addEventListener('keyup', function(e) {
     keys[e.key] = false;
 });
 const blockSize = 10;
+const framerate = 60;
+let counter = 0;
 function update() {
     context.clearRect(0, 0, c.width, c.height);
+    for (let i = 0; i < boxes.length; i++) {
+        move(boxes[i]);
+        boxes[i].draw();
+    }
     let intendedX = player.x;
     let intendedY = player.y;
     if (canmove) {
@@ -74,11 +80,11 @@ function update() {
         player.y = intendedY;
     }
     player.draw();
-    for (let i = 0; i < boxes.length; i++) {
-        move(boxes[i]);
-        boxes[i].draw();
+    counter++;
+    if (counter >= framerate){
+        createlog(); 
+        counter = 0;
     }
-    createlog(); 
     requestAnimationFrame(update);
 }
 document.addEventListener('keyup', function(e) {
