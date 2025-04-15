@@ -24,7 +24,16 @@ body {
     font-size: 20px;
     padding: 10px;
 }
-canvas {
+.canvas-container {
+    display: flex;
     border: 1px solid black;
     background: white;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    margin: 20px auto;
+}
+canvas {
+    background-color: lightgrey;
 }
