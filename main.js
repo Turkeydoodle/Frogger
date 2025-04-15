@@ -4,6 +4,12 @@ c.width = 500;
 c.height = 500;
 let canmove = true;
 let boxes = [];
+function drawbackground() {
+    context.fillStyle = 'green'
+    context.fillRect(0, 480, 500, 20)
+    context.fillRect(0, 0, 500, 20)
+}
+drawbackground()
 function drawbox(x, y, color) {
     context.fillStyle = color;
     context.fillRect(x, y, 10, 10);
@@ -13,7 +19,7 @@ function move(box) {
 }
 let player = {
     x: c.width / 2 - 10,
-    y: c.height - 30,
+    y: 480,
     width: 20,
     height: 20,
     color: 'blue',
@@ -25,11 +31,11 @@ let player = {
 };
 function createlog(){
     const minInclusive = 1;
-    const maxInclusive = 5;
+    const maxInclusive = 25;
     const randomNumber = Math.floor(Math.random() * (maxInclusive - minInclusive + 1));
     let row1box = {
         x: 20,
-        y: 10+ 20 *randomNumber,
+        y: 30+ 20 *randomNumber,
         color: 'red',
         draw: function() {
             drawbox(this.x, this.y, this.color);
@@ -45,7 +51,7 @@ document.addEventListener('keyup', function(e) {
     keys[e.key] = false;
 });
 const blockSize = 10;
-const framerate = 60;
+const framerate = 20;
 let counter = 0;
 function update() {
     context.clearRect(0, 0, c.width, c.height);
@@ -53,6 +59,7 @@ function update() {
         move(boxes[i]);
         boxes[i].draw();
     }
+    drawbackground()
     let intendedX = player.x;
     let intendedY = player.y;
     if (canmove) {
