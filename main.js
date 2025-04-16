@@ -4,6 +4,7 @@ c.width = 500;
 c.height = 500;
 let canmove = true;
 let boxes = [];
+let isRunning = true;
 function drawbackground() {
     context.fillStyle = 'green'
     context.fillRect(0, 480, 500, 20)
@@ -19,7 +20,7 @@ function move(box) {
 }
 let player = {
     x: c.width / 2 - 10,
-    y: 480,
+    y: 481,
     width: 20,
     height: 20,
     color: 'blue',
@@ -31,12 +32,14 @@ let player = {
 };
 function createlog(){
     const minInclusive = 1;
-    const maxInclusive = 25;
+    const maxInclusive = 23;
     const randomNumber = Math.floor(Math.random() * (maxInclusive - minInclusive + 1));
     let row1box = {
-        x: 20,
+        x: -10,
         y: 30+ 20 *randomNumber,
-        color: 'red',
+        width: 10,
+        height: 10,
+        color: 'brown',
         draw: function() {
             drawbox(this.x, this.y, this.color);
         }
@@ -50,14 +53,46 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('keyup', function(e) {
     keys[e.key] = false;
 });
-const blockSize = 20;
+const blockSize = 20.1;
 const framerate = 10;
 let counter = 0;
+function collision(player, box) {
+    if (player.x + player.width < box.x) {
+        return false;
+    }
+    if (player.x > box.x + box.width) {
+        return false;
+    }
+    if (player.y + player.height < box.y) {
+        return false;
+    }
+    if (player.y > box.y + box.height) {
+        return false;
+    }
+    return true;
+}
+
+function stopGame() {
+    isRunning = false;
+}
+
 function update() {
+    if (!isRunning) return;
+
     context.clearRect(0, 0, c.width, c.height);
     for (let i = 0; i < boxes.length; i++) {
         move(boxes[i]);
         boxes[i].draw();
+        if (collision(player, boxes[i])) {
+            stopGame();
+            player.color = 'yellow';
+        } else {
+             player.color = 'blue';
+        }
+        if (boxes[i].x > c.width) {
+            boxes.splice(i, 1);
+            i--;
+        }
     }
     drawbackground()
     let intendedX = player.x;
@@ -80,21 +115,24 @@ function update() {
             canmove = false;
         }
     }
-    if (intendedX >= 0 && intendedX <= c.width - player.width) {
-        player.x = intendedX;
-    }
-    if (intendedY >= 0 && intendedY <= c.height - player.height) {
-        player.y = intendedY;
-    }
+    intendedX = Math.max(0, Math.min(intendedX, c.width - player.width));
+    player.x = intendedX;
+    player.y = intendedY;
     player.draw();
     counter++;
     if (counter >= framerate){
-        createlog(); 
+        createlog();
         counter = 0;
+    }
+    if (player.y <= 10){
+        player.color = 'red'
+        return;
     }
     requestAnimationFrame(update);
 }
 document.addEventListener('keyup', function(e) {
     canmove = true;
 });
+
+isRunning = true;
 update();
