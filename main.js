@@ -15,7 +15,7 @@ function drawbox(x, y, color) {
     context.fillRect(x, y, 10, 10);
 }
 function move(box) {
-    box.x += 1;
+    box.x += 3;
 }
 let player = {
     x: c.width / 2 - 10,
@@ -50,8 +50,8 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('keyup', function(e) {
     keys[e.key] = false;
 });
-const blockSize = 10;
-const framerate = 20;
+const blockSize = 20;
+const framerate = 10;
 let counter = 0;
 function update() {
     context.clearRect(0, 0, c.width, c.height);
