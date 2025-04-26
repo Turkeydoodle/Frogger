@@ -2,6 +2,7 @@ const c = document.getElementById('canvas');
 const context = c.getContext('2d');
 c.width = 500;
 c.height = 500;
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 let canmove = true;
 let boxes = [];
 let isRunning = true;
@@ -23,7 +24,7 @@ let player = {
     y: 481,
     width: 20,
     height: 20,
-    color: 'blue',
+    color: 'black',
     speed: 5,
     draw: function() {
         context.fillStyle = this.color;
@@ -39,7 +40,8 @@ function createlog(){
         y: 30+ 20 *randomNumber,
         width: 10,
         height: 10,
-        color: 'brown',
+        maxInclusive:  6,
+        color: colors[ Math.floor(Math.random() * (maxInclusive - minInclusive + 1))],
         draw: function() {
             drawbox(this.x, this.y, this.color);
         }
@@ -87,7 +89,7 @@ function update() {
             stopGame();
             player.color = 'yellow';
         } else {
-             player.color = 'blue';
+             player.color = 'black';
         }
         if (boxes[i].x > c.width) {
             boxes.splice(i, 1);
