@@ -6,6 +6,7 @@ colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 let canmove = true;
 let boxes = [];
 let isRunning = true;
+health = 3;  
 function drawbackground() {
     context.fillStyle = 'green'
     context.fillRect(0, 480, 500, 20)
@@ -75,7 +76,9 @@ function collision(player, box) {
 }
 
 function stopGame() {
-    isRunning = false;
+    if (health == 0){
+        isRunning = false
+    };
 }
 
 function update() {
@@ -86,6 +89,7 @@ function update() {
         move(boxes[i]);
         boxes[i].draw();
         if (collision(player, boxes[i])) {
+            health -= 1
             stopGame();
             player.color = 'yellow';
         } else {
