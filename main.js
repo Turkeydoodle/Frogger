@@ -1,5 +1,6 @@
 const c = document.getElementById('canvas');
 const context = c.getContext('2d');
+healthd = document.getElementById('healthd');
 c.width = 500;
 c.height = 500;
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
@@ -7,6 +8,7 @@ let canmove = true;
 let boxes = [];
 let isRunning = true;
 health = 3;  
+healthd.innerHTML() = health;
 function drawbackground() {
     context.fillStyle = 'green'
     context.fillRect(0, 480, 500, 20)
