@@ -4,14 +4,11 @@ const counterd = document.getElementById('counterd');
 c.width = 500;
 c.height = 500;
 let health = 3;
+let hasbeentouched = [];
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 let canmove = true;
 let boxes = [];
 let isRunning = true;
-let touched = [];
-if (counterd) {
-  counterd.innerHTML = health;
-}
 function drawbackground() {
     context.fillStyle = 'green'
     context.fillRect(0, 480, 500, 20)
@@ -95,13 +92,13 @@ function update() {
         move(boxes[i]);
         boxes[i].draw();
         if (collision(player, boxes[i])) {
-            if (!touched.includes(boxes[i])){
+            if (!hasbeentouched.includes(boxes[i])){
                 health -= 1;
                 health = Math.max(0, health);
                 if (counterd) {
                     counterd.innerHTML = health;
-                    touched.push(boxes[i])
-            }
+                }
+                hasbeentouched.push(boxes[i]);
             }
             stopGame();
             player.color = 'yellow';
