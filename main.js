@@ -139,7 +139,7 @@ function update() {
         createBox();
         counter = 0;
     }
-    if (player.y <= 20 && isRunning){
+    if (player.y == 0 && isRunning){
         player.color = 'red'
         isRunning = false;
         if (counterd) {
